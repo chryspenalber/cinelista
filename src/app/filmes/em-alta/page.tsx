@@ -1,12 +1,19 @@
 import Title from "@/app/components/Title";
+import { getPopularMovies } from "@/lib/api/tmdb";
+import Grid from "@/app/components/Grid";
 
-const FilmesEmAlta = () =>{
+export const dynamic = 'force-dynamic';
 
-    return(
-        <>
-        <Title title="Filmes em Alta"/>
-        </>
-    )
-}
+
+const FilmesEmAlta = async () => {
+  const filmes = await getPopularMovies();
+
+  return (
+    <>
+      <Title title="Filmes em Alta" />
+      <Grid filmes={filmes} />
+    </>
+  );
+};
 
 export default FilmesEmAlta;
