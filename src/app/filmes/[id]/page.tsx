@@ -9,32 +9,32 @@ type Props = {
   }>;
 };
 
-export const generateMetadata = async({ params }: Props) => {
-const { id } = await params;
+export const generateMetadata = async ({ params }: Props) => {
+  const { id } = await params;
 
   const details = await getMovieDetails(id);
 
-  if (!details)
-      return;
-  
+  if (!details) return;
+
   return {
+    title: `${details.title} | Cinelista`,
+    description: details.overview,
+    openGraph: {
       title: `${details.title} | Cinelista`,
       description: details.overview,
-      openGraph: {
-        title: `${details.title} | Cinelista`,
-      description: details.overview,
-      images:[`${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${details.poster_path}}`]
-      }
-  }
-}
+      images: [
+        `${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${details.poster_path}}`,
+      ],
+    },
+  };
+};
 
 const DetalheFilme = async ({ params }: Props) => {
   const { id } = await params;
 
   const details = await getMovieDetails(id);
 
-  if (!details) 
-    return notFound();
+  if (!details) return notFound();
 
   const { title, poster_path, overview } = details;
 
