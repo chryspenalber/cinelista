@@ -1,13 +1,13 @@
-import { getTrendingMovies } from "@/lib/api/tmdb";
-import Grid from "./components/Grid";
-import Title from "./components/Title";
+import { getTrendingMovies } from '@/lib/api/tmdb';
+import Grid from './components/Grid';
+import Title from './components/Title';
 
 export default async function Home() {
-  const filmes = await getTrendingMovies()
+  const filmes = await getTrendingMovies();
   return (
     <>
-    <Title title="Filme em destaque"/>
-    <Grid filmes={filmes}/>
+      <Title title="Filme em destaque" />
+      <Grid filmes={filmes} />
     </>
   );
 }
